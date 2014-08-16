@@ -17,10 +17,6 @@ func main() {
 
 	--version            displays utility version
 
-        --posixly-correct    boolean value; if set, --help and --version
-                             function as described. By default, this 
-                             utility parses them as strings. 
-
         --limit              specifies number of times arguments will be
                              be displayed.
 `
