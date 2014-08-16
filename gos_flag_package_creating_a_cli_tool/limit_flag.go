@@ -6,33 +6,41 @@ import(
 "strconv"
 )
 
-type CustomFlag struct {
+type CustomStruct struct {
 	FlagValue int
 }
 
-func (cF *CustomFlag) String() string {
+func (cF *CustomStruct) String() string {
 	return strconv.Itoa(cF.FlagValue)
 }
 
-func (cF *CustomFlag) Set(s string) error {
+func (cF *CustomStruct) Set(s string) error {
 	cF.FlagValue, _ = strconv.Atoi(s)
 	
 	return nil
 }
 
-func (cF *CustomFlag) Get() int {
+func (cF *CustomStruct) Get() int {
 	return cF.FlagValue
 }
 
-func main() {
-	limit := CustomFlag{-1}
+func (cF *CustomStruct) IsSet() bool {
+	if cF.FlagValue == -1 {
+		return false
+	}
 
-	flag.Var(&limit, "limit", "Limits output")
+	return true
+}
+
+func main() {
+	limitFlag := CustomStruct{-1}
+
+	flag.Var(&limitFlag, "limit", "Limits output")
 
 	flag.Parse()
 
-	if limit.Get() > -1 {
-		fmt.Printf("\nLimit: %d\n\n", limit.Get())
+	if limitFlag.IsSet() {
+		fmt.Printf("\nLimit: %d\n\n", limitFlag.Get())
 	} else {
 		fmt.Printf("\nLimit flag not included.\n\n")
 	}
