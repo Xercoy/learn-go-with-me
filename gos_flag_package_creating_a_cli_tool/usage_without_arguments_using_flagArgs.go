@@ -1,8 +1,8 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-"flag"
 )
 
 func main() {
@@ -12,7 +12,7 @@ func main() {
 		if len(flag.Args()) == 0 {
 			fmt.Printf("y \n")
 		} else {
-			break;
+			break
 		}
 	}
 }
